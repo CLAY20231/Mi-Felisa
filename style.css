@@ -445,6 +445,7 @@ a {
   padding: 12px 16px;
   border-radius: 14px;
   border: 1px solid rgba(240, 100, 100, 0.45);
+  background: #ffe3e3;
   min-width: 240px;
   font-size: 14px;
 }
