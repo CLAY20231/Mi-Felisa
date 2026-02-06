@@ -27,6 +27,19 @@ document.addEventListener("DOMContentLoaded", () => {
     return Number.isFinite(numeric) ? numeric : 0;
   };
 
+  const hydratePrices = () => {
+    products.forEach((product) => {
+      const hasSelect = product.querySelector(".variant-select");
+      if (hasSelect) return;
+      const current = Number(product.dataset.price || 0);
+      if (current > 0) return;
+      const parsed = getPriceFromText(product);
+      if (parsed > 0) {
+        product.dataset.price = String(parsed);
+      }
+    });
+  };
+
   const renderProducts = () => {
     const query = searchInput?.value.toLowerCase().trim() ?? "";
     products.forEach((item) => {
@@ -202,6 +215,7 @@ document.addEventListener("DOMContentLoaded", () => {
     storeStatus.classList.toggle("closed", !isOpen);
   };
 
+  hydratePrices();
   renderProducts();
   renderCart();
   updateStoreStatus();
